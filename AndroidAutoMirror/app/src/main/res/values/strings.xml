@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Android Auto Mirror</string>
+    <string name="start_mirroring">Start Mirroring</string>
+    <string name="stop_mirroring">Stop Mirroring</string>
+    <string name="status_ready">Status: Ready</string>
+    <string name="status_active">Status: Mirroring Active 🟢</string>
+    <string name="status_stopped">Status: Stopped</string>
+    <string name="permission_denied">Permission denied. Please grant all permissions to use screen mirroring.</string>
+    <string name="audio_permission_required">Audio permission is required for screen mirroring</string>
+    <string name="screen_capture_denied">Screen capture permission denied</string>
+</resources>

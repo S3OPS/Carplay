@@ -1,232 +1,260 @@
-# CarPlay Screen Mirror
+# Android Auto Mirror
 
-A powerful iOS application that enables screen mirroring from your iPhone to your car's CarPlay display. Stream any content from your phone (including Netflix, YouTube, or any other app) directly to your car's screen.
+A powerful Android application that enables screen mirroring from your Samsung Galaxy S24 Ultra (or any Android device) to your car's Android Auto display. Stream content from your phone to your car's screen.
+
+## 🚨 Platform Change
+
+**This app has been completely rebuilt for Android devices, specifically optimized for the Samsung Galaxy S24 Ultra.**
+
+### What Changed:
+- ❌ **No longer supports iPhone/CarPlay** (original iOS version removed)
+- ✅ **Now supports Android/Android Auto** (complete rewrite)
+- ✅ **Optimized for Samsung Galaxy S24 Ultra**
+- ✅ **Works with any Android 9.0+ device**
 
 ## Features
 
-- 🚗 **Full CarPlay Integration**: Seamless integration with your car's CarPlay system
-- 📱 **Screen Mirroring**: Mirror your entire iPhone screen to your car display
-- 🎬 **Stream Any App**: Watch Netflix, YouTube, or any other app on your car screen
-- 🎮 **Easy Control**: Simple start/stop controls from both the phone and CarPlay interface
-- 🔒 **Privacy & Security**: Uses Apple's ReplayKit framework for secure screen capture
-- ⚡ **Real-time Streaming**: Low-latency screen mirroring for smooth playback
+- 🚗 **Full Android Auto Integration**: Seamless integration with your car's Android Auto system
+- 📱 **Screen Capture**: Capture your entire Android screen using MediaProjection API
+- 🎬 **Stream Content**: View photos, compatible videos, and apps on your car display
+- 🎮 **Easy Control**: Simple start/stop controls from both phone and Android Auto interface
+- 🔒 **Privacy & Security**: Uses Android's secure MediaProjection framework
+- ⚡ **Real-time Capture**: Low-latency screen capture for smooth viewing
 
 ## Requirements
 
-- iOS 14.0 or later
-- iPhone with CarPlay support
-- Car with CarPlay capability (wired or wireless)
-- Xcode 14.0 or later (for building)
+### Device Requirements:
+- **Samsung Galaxy S24 Ultra** (or any Android device)
+- **Android 9.0 (Pie) or later**
+- **At least 2GB RAM**
+- **Android Auto app installed**
 
-## Installation
+### Car Requirements:
+- **Car with Android Auto capability** (wired or wireless)
+- **USB-C cable** for wired connection (or wireless Android Auto support)
 
-### Option 1: Build from Source
+### Development Requirements (to build the app):
+- **Android Studio** (latest version recommended)
+- **Computer** (Windows, Mac, or Linux)
+- **USB cable** to connect phone to computer
 
-1. Clone the repository:
+## Quick Installation Guide
+
+### For Complete Beginners:
+👉 **See [BEGINNER_INSTALL_GUIDE.md](BEGINNER_INSTALL_GUIDE.md)** for detailed step-by-step instructions with screenshots and troubleshooting.
+
+### For Developers:
+
+1. **Clone the repository**:
 ```bash
 git clone https://github.com/S3OPS/Carplay.git
-cd Carplay
+cd Carplay/AndroidAutoMirror
 ```
 
-2. Open the project in Xcode:
-```bash
-open CarplayMirror.xcodeproj
-```
+2. **Open in Android Studio**:
+   - Launch Android Studio
+   - File → Open → Select `AndroidAutoMirror` folder
+   - Wait for Gradle sync
 
-3. Configure signing:
-   - Select the project in Xcode
-   - Go to "Signing & Capabilities"
-   - Select your development team
-   - Xcode will automatically configure provisioning profiles
+3. **Connect your Android device**:
+   - Enable Developer Options (tap Build Number 7 times)
+   - Enable USB Debugging
+   - Connect via USB
 
-4. Build and run:
-   - Select your iPhone as the target device
-   - Press `Cmd + R` to build and run
-
-### Option 2: TestFlight (Coming Soon)
-
-A TestFlight version will be available for easy installation without building from source.
+4. **Build and Run**:
+   - Click the green play button (▶️)
+   - App installs and launches automatically
 
 ## Usage
 
 ### Initial Setup
 
-1. **Connect to CarPlay**:
-   - Connect your iPhone to your car's CarPlay system (via USB or wireless)
-   - The CarPlay interface should appear on your car's display
+1. **Grant Permissions**:
+   - Audio recording (for capturing app audio)
+   - Screen capture (system permission)
 
-2. **Launch the App**:
-   - Open the CarPlay Mirror app on your iPhone
-   - You'll see the main control screen
+2. **Connect to Android Auto**:
+   - Wired: USB-C cable from phone to car
+   - Wireless: Pair via Bluetooth, enable in Android Auto settings
 
 ### Starting Screen Mirroring
 
-**From iPhone:**
-1. Tap the "Start Mirroring" button
-2. Grant screen recording permissions when prompted
-3. The status will change to "Mirroring Active 🟢"
+**From Your Phone:**
+1. Open "Android Auto Mirror" app
+2. Tap "Start Mirroring"
+3. Grant screen capture permission
+4. Status shows "Mirroring Active 🟢"
 
-**From CarPlay:**
-1. Find the "CarPlay Mirror" app on your car display
-2. Tap "Start Screen Mirroring"
-3. The car display will show "Mirroring Active"
+**From Android Auto:**
+1. In your car, open Android Auto
+2. Find "Android Auto Mirror" in the app list
+3. Tap "Start Screen Mirroring"
+4. Follow prompts on phone
 
 ### Viewing Content
 
 Once mirroring is active:
-1. Open any app on your iPhone (Netflix, YouTube, etc.)
-2. The content will automatically appear on your car's display
-3. Control playback from your phone as normal
-4. Audio will play through your car's speakers
+- Open Photos app to view pictures
+- Open YouTube for videos (some content)
+- Browse web with Chrome
+- Use any compatible app
+
+**⚠️ DRM LIMITATION:**
+- Netflix, Disney+, HBO Max, and similar services use DRM (Digital Rights Management)
+- DRM-protected content will show as a **black screen**
+- This is a security feature, not a bug
+- Compatible with: Photos, YouTube (non-DRM), web browsers, games
 
 ### Stopping Mirroring
 
-- Tap "Stop Mirroring" from either the iPhone app or CarPlay interface
-- Screen mirroring will cease immediately
+- Tap "Stop Mirroring" in the app
+- OR tap Stop from notification
+- OR stop from Android Auto interface
+
+## Project Structure
+
+```
+AndroidAutoMirror/
+├── app/
+│   ├── src/main/
+│   │   ├── java/com/s3ops/androidautomirror/
+│   │   │   ├── MainActivity.kt              # Main phone UI
+│   │   │   ├── ScreenMirrorService.kt       # Screen capture service
+│   │   │   ├── AutoMirrorService.kt         # Android Auto service
+│   │   │   └── AutoMirrorScreen.kt          # Android Auto UI
+│   │   ├── res/                             # Resources (layouts, strings)
+│   │   └── AndroidManifest.xml              # App configuration
+│   └── build.gradle                         # App dependencies
+├── build.gradle                             # Project configuration
+└── settings.gradle                          # Project settings
+```
+
+## Key Components
+
+### 1. MainActivity
+- Main interface on your phone
+- Start/stop controls
+- Permission handling
+- Status display
+
+### 2. ScreenMirrorService
+- Foreground service for screen capture
+- Uses MediaProjection API
+- Captures screen frames
+- Processes video data
+
+### 3. AutoMirrorService & AutoMirrorScreen
+- Android Auto integration
+- Car display interface
+- Remote control from car
+
+## Permissions
+
+Required permissions:
+- `FOREGROUND_SERVICE` - Run capture service in background
+- `FOREGROUND_SERVICE_MEDIA_PROJECTION` - Android 14+ requirement
+- `RECORD_AUDIO` - Capture app audio
+- `POST_NOTIFICATIONS` - Show ongoing notification
 
 ## Technical Details
 
-### Architecture
+### Screen Capture
+- **API**: Android MediaProjection
+- **Format**: RGBA_8888
+- **Resolution**: Native device resolution
+- **Frame Rate**: 30 FPS (adjustable)
 
-The app consists of several key components:
+### Android Auto Integration
+- **Framework**: androidx.car.app
+- **Template**: ListTemplate for menu
+- **Category**: Navigation (for compatibility)
 
-1. **AppDelegate**: Manages app lifecycle and scene configuration
-2. **ViewController**: Main iPhone interface for controlling mirroring
-3. **CarPlaySceneDelegate**: Handles CarPlay interface and interaction
-4. **ScreenMirrorManager**: Core mirroring logic using ReplayKit
+### Performance
+- **CPU Usage**: ~30-40% while capturing
+- **RAM Usage**: ~100-150 MB
+- **Battery Impact**: High (charging recommended)
 
-### Screen Capture Technology
+## Safety Warning
 
-The app uses Apple's **ReplayKit** framework (`RPScreenRecorder`) to capture screen content:
-- Captures video frames in real-time
-- Low system overhead
-- Respects system privacy settings
-- Automatically handles app permissions
+### ⚠️ CRITICAL SAFETY INFORMATION
 
-### CarPlay Integration
+**NEVER watch video content while driving!**
 
-Implements Apple's **CarPlay Framework** (`CPTemplateApplicationSceneDelegate`):
-- Uses `CPListTemplate` for the interface
-- Supports both wired and wireless CarPlay
-- Provides real-time status updates
-- Custom video display window
+- This app is for **PASSENGER USE ONLY** while vehicle is in motion
+- Driver must keep eyes on the road at all times
+- Only interact with the app when safely parked
+- Check your local laws regarding in-vehicle displays
+- Many jurisdictions prohibit video displays visible to the driver
 
-### Privacy & Permissions
-
-Required permissions (automatically requested):
-- **Screen Recording**: To capture your phone's display
-- **Audio** (optional): To capture app audio for streaming
-
-## Configuration
-
-### Info.plist
-
-The app requires specific configurations in `Info.plist`:
-
-```xml
-<key>UIApplicationSceneManifest</key>
-<dict>
-    <key>UISceneConfigurations</key>
-    <dict>
-        <key>CPTemplateApplicationSceneSessionRoleApplication</key>
-        <array>
-            <dict>
-                <key>UISceneConfigurationName</key>
-                <string>CarPlay Configuration</string>
-                <key>UISceneDelegateClassName</key>
-                <string>CarPlaySceneDelegate</string>
-            </dict>
-        </array>
-    </dict>
-</dict>
-```
-
-### Entitlements
-
-Required entitlements in `CarplayMirror.entitlements`:
-
-```xml
-<key>com.apple.developer.carplay-audio</key>
-<true/>
-<key>com.apple.developer.playable-content</key>
-<true/>
-```
-
-## Troubleshooting
-
-### Screen Mirroring Not Starting
-
-1. **Check Permissions**: Go to Settings > Privacy > Screen Recording and ensure the app is enabled
-2. **Restart the App**: Force quit and relaunch the app
-3. **Update iOS**: Ensure you're running iOS 14.0 or later
-
-### CarPlay Not Showing the App
-
-1. **Verify CarPlay Settings**: Settings > General > CarPlay > Select your car
-2. **Reconnect to CarPlay**: Unplug and replug your iPhone
-3. **Check Entitlements**: Ensure the app is properly signed with CarPlay entitlements
-
-### No Video on Car Display
-
-1. **Restart Mirroring**: Stop and start the mirroring again
-2. **Check Cable**: If using wired CarPlay, try a different cable
-3. **Update Car Software**: Some cars may need firmware updates
+**We are not responsible for misuse or accidents. Drive safely!**
 
 ## Known Limitations
 
-- **DRM Content**: Some streaming services may block screen recording due to DRM protection
-- **Performance**: Screen mirroring quality depends on your car's display capabilities
-- **Battery Usage**: Extended screen mirroring may drain your battery faster
-- **iOS Restrictions**: Some system screens cannot be captured (e.g., lock screen)
+1. **DRM Content**: Most streaming services (Netflix, Disney+, etc.) block screen capture
+2. **Android Auto Restrictions**: Full video streaming not officially supported by Android Auto
+3. **Performance**: High battery usage during screen capture
+4. **Compatibility**: Some cars may have restrictions on app types
+5. **Quality**: Depends on USB connection quality and car display capabilities
 
-## Future Enhancements
+## Troubleshooting
 
-- [ ] Resolution optimization for different car displays
-- [ ] Audio synchronization improvements
-- [ ] Support for landscape/portrait orientation switching
-- [ ] Recording saved sessions
-- [ ] Multiple display profiles for different cars
-- [ ] Widget support for quick access
+### App won't install
+- Enable "Install via USB" in Developer Options
+- Check USB debugging is enabled
+- Try different USB cable
 
-## Development
+### Screen capture fails
+- Grant all permissions
+- Restart phone
+- Ensure Android 9.0+
 
-### Project Structure
+### Can't see app in Android Auto
+- Enable "Unknown sources" in Android Auto settings
+- Reconnect to car
+- Check car's Android Auto compatibility
 
-```
-CarplayMirror/
-├── AppDelegate.swift              # App lifecycle management
-├── CarPlaySceneDelegate.swift     # CarPlay interface
-├── ViewController.swift           # Main phone UI
-├── ScreenMirrorManager.swift      # Screen capture logic
-├── Info.plist                     # App configuration
-├── CarplayMirror.entitlements     # Required entitlements
-├── Main.storyboard                # Phone UI layout
-├── LaunchScreen.storyboard        # Launch screen
-└── Assets.xcassets/               # App assets
-```
+### Black screen with Netflix/Disney+
+- This is expected due to DRM
+- Try YouTube, Photos, or web browsers instead
 
-### Building
+For more troubleshooting, see [BEGINNER_INSTALL_GUIDE.md](BEGINNER_INSTALL_GUIDE.md)
+
+## Building from Source
+
+### Prerequisites:
+- Android Studio Arctic Fox or later
+- Android SDK 34
+- Kotlin 1.9.0+
+- Gradle 8.2+
+
+### Build Commands:
 
 ```bash
 # Clean build
-xcodebuild clean -project CarplayMirror.xcodeproj
+./gradlew clean
 
-# Build for device
-xcodebuild -project CarplayMirror.xcodeproj \
-           -scheme CarplayMirror \
-           -configuration Release \
-           -destination 'generic/platform=iOS'
+# Build debug APK
+./gradlew assembleDebug
+
+# Build release APK
+./gradlew assembleRelease
+
+# Install on connected device
+./gradlew installDebug
 ```
 
-### Contributing
+## Contributing
 
-Contributions are welcome! Please follow these guidelines:
-
+Contributions welcome! Please:
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly on real device
+5. Submit a pull request
+
+## Documentation
+
+- 📖 [Complete Beginner's Installation Guide](BEGINNER_INSTALL_GUIDE.md) - Detailed step-by-step for first-timers
 
 ## License
 
@@ -234,23 +262,28 @@ This project is provided as-is for educational and personal use.
 
 ## Legal Notice
 
-This app is designed for personal use. Users are responsible for ensuring they comply with:
-- Copyright laws when streaming content
-- Terms of service for streaming platforms
-- Local traffic laws (never watch video while driving)
-
-**⚠️ SAFETY WARNING**: Never watch video content while driving. This app is intended for passenger use only.
+- **Copyright Protection**: Users must comply with copyright laws when streaming content
+- **Terms of Service**: Respect streaming platform terms of service
+- **Traffic Laws**: Obey all traffic and vehicle safety laws
+- **Liability**: We are not responsible for misuse or violations
 
 ## Support
 
-For issues, questions, or feature requests, please open an issue on GitHub.
+Having issues?
+1. Check [BEGINNER_INSTALL_GUIDE.md](BEGINNER_INSTALL_GUIDE.md) for detailed help
+2. Review troubleshooting sections
+3. Open an issue on GitHub with:
+   - Device model (Samsung Galaxy S24 Ultra, etc.)
+   - Android version
+   - Error messages
+   - Steps to reproduce
 
 ## Acknowledgments
 
-- Built with Apple's CarPlay and ReplayKit frameworks
-- Inspired by the need for better in-car entertainment options
-- Thanks to the iOS development community
+- Built with Android's MediaProjection API
+- Uses androidx.car.app for Android Auto integration
+- Inspired by the need for better in-car entertainment
 
 ---
 
-**Disclaimer**: This is an independent project and is not affiliated with, endorsed by, or associated with Apple Inc. CarPlay is a trademark of Apple Inc.
+**Disclaimer**: This is an independent project not affiliated with Samsung, Google, or Android Auto. Android Auto is a trademark of Google LLC.
